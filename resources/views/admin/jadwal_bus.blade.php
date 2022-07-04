@@ -15,46 +15,31 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{url('user')}}" method="post" id="tambahuserform">
+                        <form action="{{url('jadwalbus')}}" method="post" id="tambahuserform">
                             @csrf
                             <div class="row">
                                 <div class="col mb-3">
-                                    <label for="nameBasic" class="form-label">Nama</label>
-                                    <input type="text" name="name" id="nameBasic" class="form-control"
-                                        placeholder="Enter Name" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col mb-0">
-                                    <label for="penumpang" class="form-label">No Hp</label>
-                                    <input type="text" name="no_hp" id="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col mb-0">
-                                    <label for="penumpang" class="form-label">Role</label>
-                                    <select name="role" id="" class="form-control">
-                                        <option value="kernet">Kernet</option>
+                                    <label for="nameBasic" class="form-label">Bus</label>
+                                    <select name="bus_id" id="" class="form-control">
+                                        @foreach($buses as $bus)
+                                            <option value="{{$bus->id}}">{{$bus->pt_po .' - '.$bus->plat_nomor.' - '.$bus->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="row g-2">
+                            <div class="row">
                                 <div class="col mb-0">
-                                    <label for="emailBasic" class="form-label" required>Email</label>
-                                    <input type="text" id="emailBasic" name="email" class="form-control"
-                                        placeholder="xxxx@xxx.xx" required>
+                                    <label for="penumpang" class="form-label">Deskripsi Jadwal</label>
+                                    <textarea  name="deskripsi_jadwal" id="" class="form-control" required placeholder="BANYUWANGI 19.00"></textarea>
                                 </div>
-                                <div class="col mb-0">
-                                    <label for="dobBasic" class="form-label">Password</label>
-                                    <input type="password" name="password" id="dobBasic" class="form-control" required>
-                                </div>
-
                             </div>
+
+
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="tambahuser()" class="btn btn-primary">Save changes</button>
+                        <button type="button" onclick="tambahuser()" class="btn btn-primary">Simpan</button>
                     </div>
                 </div>
             </div>
@@ -65,26 +50,26 @@
             <thead>
                 <tr class="text-nowrap">
                     <th>#</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>No Hp</th>
-                    <th>Role</th>
+                    <th>PT/PO</th>
+                    <th>Plat Nomor</th>
+                    <th>Jurusan</th>
+                    <th>Deskripsi Jadwal</th>
                     <th>Option</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach($users as $user)
+                @foreach($jadwal_buses as $jadwal_bus)
                 <tr>
                     <th scope="row">{{$loop->iteration}}</th>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->no_hp}}</td>
-                    <td>{{$user->role}}</td>
+                    <td>{{$jadwal_bus->pt_po}}</td>
+                    <td>{{$jadwal_bus->plat_nomor}}</td>
+                    <td>{{$jadwal_bus->jalur}}</td>
+                    <td style="white-space: pre-line;">{{$jadwal_bus->deskripsi_jadwal}}</td>
                     <td>
-                        <span class="btn btn-warning" onclick="edit({{$user}})"><i class='bx bxs-edit-alt'></i></span>
+                        <span class="btn btn-warning" onclick="edit({{$jadwal_bus}})"><i class='bx bxs-edit-alt'></i></span>
 
-                        <span class="btn btn-danger" onclick="hapus({{$user->id}})"><i class='bx bxs-trash'></i></span>
+                        <span class="btn btn-danger" onclick="hapus({{$jadwal_bus->id}})"><i class='bx bxs-trash'></i></span>
                     </td>
                 </tr>
                 @endforeach
@@ -98,7 +83,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center" id="exampleModalLabel2">Apakah Anda Yakin Mau menghapus user?</h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel2">Apakah Anda Yakin Mau menghapus jadwal?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-footer">
@@ -136,12 +121,8 @@ alertToast({
 $("#tambahuserbutton").on("click", () => {
     resetvalidateForm("#tambahuserform")
     $("#titlemodal").html("Tambah")
-    $("#tambahusermodal form").attr("action", "{{url('user')}}")
-    $("#tambahusermodal [name='name']").val("")
-    $("#tambahusermodal [name='email']").val("")
-    $("#tambahusermodal [name='no_hp']").val("")
-    $("#tambahusermodal [name='password']").prop("required", true)
-    $("#tambahusermodal [name='password']").val("")
+    $("#tambahusermodal form").attr("action", "{{url('jadwalbus')}}")
+    $("#tambahusermodal [name='deskripsi_jadwal']").val("")
     $("#tambahusermodal").modal("show")
 })
 
@@ -149,20 +130,17 @@ function tambahuser() {
     validateForm("#tambahuserform")
 }
 
-function edit(user) {
+function edit(jadwal_bus) {
     resetvalidateForm("#tambahuserform")
     $("#titlemodal").html("Edit")
-    $("#tambahusermodal form").attr("action", `{{url('user')}}/${user.id}`)
-    $("#tambahusermodal [name='name']").val(user.name)
-    $("#tambahusermodal [name='email']").val(user.email)
-    $("#tambahusermodal [name='no_hp']").val(user.no_hp)
-    $("#tambahusermodal [name='role']").val(user.role)
-    $("#tambahusermodal [name='password']").removeAttr("required")
+    $("#tambahusermodal form").attr("action", `{{url('jadwalbus')}}/${jadwal_bus.id}`)
+    $("#tambahusermodal [name='bus_id']").val(jadwal_bus.idbus)
+    $("#tambahusermodal [name='deskripsi_jadwal']").val(jadwal_bus.deskripsi_jadwal)
     $("#tambahusermodal").modal("show")
 }
 
 function hapus(id) {
-  $("#hapusmodal form").attr("action",`{{url('user/hapus')}}/${id}`)
+  $("#hapusmodal form").attr("action",`{{url('jadwalbus/hapus')}}/${id}`)
   $("#hapusmodal").modal('show')
 }
 

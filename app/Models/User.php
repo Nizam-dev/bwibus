@@ -23,6 +23,10 @@ class User extends Authenticatable
         'password',
         'role',
         'no_hp',
+        'nik',
+        'jenis_kelamin',
+        'tanggal_lahir',
+        'status',
     ];
 
     /**

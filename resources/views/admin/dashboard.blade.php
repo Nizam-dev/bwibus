@@ -32,6 +32,13 @@ function initialize() {
       icon : "{{asset('public/image/iconbuss.png')}}",
       title: "Bus BWI-SURABAYA 001"
   });
+
+  var marker2=new google.maps.Marker({
+      position: new google.maps.LatLng(-7.922135981047273, 113.15222273652148),
+      map: peta,
+      icon : "{{asset('public/image/iconbuss.png')}}",
+      title: "Bus BWI-SURABAYA 002"
+  });
 }
 
 

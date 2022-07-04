@@ -16,27 +16,11 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item {{ (request()->is('dashboard')) ? 'active' : '' }}">
-            <a href="{{('dashboard')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-            </a>
-        </li>
-
-        <li class="menu-item {{ (request()->is('user')) ? 'active' : '' }}"">
-            <a href="{{url('user')}}" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-user-circle'></i>
-                <div data-i18n="Analytics">User</div>
-            </a>
-        </li>
-
-        <li class="menu-item {{ (request()->is('bus')) ? 'active' : '' }}"">
-            <a href="{{}}" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-bus'></i>
-                <div data-i18n="Analytics">Bus</div>
-            </a>
-        </li>
-
+        @if(auth()->user()->role == "admin")
+            @include('template.role.admin')
+        @elseif(auth()->user()->role == "kernet")
+            @include('template.role.kernet')
+        @endif
 
     </ul>
 </aside>

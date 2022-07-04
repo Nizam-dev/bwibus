@@ -26,6 +26,17 @@ class UserController extends Controller
 
     public function edit($id,Request $request)
     {
-        return redirect()->back()->with("sukses","User berhasil ditambahkan");
+        $data = $request->except(['password']);
+        if($request->password != ""){
+            $data["password"] = bcrypt($request->password);
+        }
+        User::find($id)->update($data);
+        return redirect()->back()->with("sukses","User ".$request->name." berhasil diedit");
+    }
+
+    public function hapus($id)
+    {
+        User::find($id)->delete();
+        return redirect()->back()->with("sukses","User berhasil dihapus");
     }
 }
