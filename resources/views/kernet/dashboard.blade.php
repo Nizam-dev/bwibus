@@ -59,7 +59,9 @@ function initialize() {
             icon : "{{asset('public/image/iconbuss.png')}}",
             title: "Bus BWI-SURABAYA 001"
         });
-
+      
+  @if($bus)
+  
   axios.get("{{url('lokasibus/'.$bus->id)}}")
   .then(res=>{
     if(res.data.status == "belum ada"){
@@ -71,6 +73,7 @@ function initialize() {
         codeLatLng(latlng)
     }
   })
+  @endif
 
   $("#updatelokasibus").on('click',()=>{
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -83,7 +86,15 @@ function initialize() {
     marker.setPosition(latlng);
     peta.setCenter(latlng);
     codeLatLng(latlng)
+    @if($bus)
     axios.post("{{url('lokasibus/'.$bus->id)}}",{latitude:lat,longitude:lng})
+    .then(res=>{
+      alertToast({
+    judul: "Sukses",
+    deskripsi: "Lokasi Berhasil diupdate",
+})
+    })
+    @endif
 }
 
   function codeLatLng(latlng) {

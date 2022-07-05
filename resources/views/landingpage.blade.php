@@ -19,15 +19,19 @@
     <link rel="stylesheet" href="{{asset('public/landingpage/assets/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/landingpage/assets/css/animated-headline.css')}}">
     <link rel="stylesheet" href="{{asset('public/landingpage/assets/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{asset('public/landingpage/assets/css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/landingpage/assets/css/themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('public/landingpage/assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('public/landingpage/assets/css/nice-select.css')}}">
     <link rel="stylesheet" href="{{asset('public/landingpage/assets/css/style.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('public/landingpage/assets/css/fontawesome-all.min.css')}}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" integrity="sha512-Mo79lrQ4UecW8OCcRUZzf0ntfMNgpOFR46Acj2ZtWO8vKhBvD79VCp3VOKSzk6TovLg5evL3Xi3u475Q/jMu4g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
         html{
             scroll-behavior: smooth;
+        }
+        .features-icon i{
+            font-size: 7rem;
         }
     </style>
 </head>
@@ -96,7 +100,9 @@
                                 <div class="hero__caption">
                                     <h1 data-animation="fadeInLeft" data-delay="0.2s">Selamat Datang Di Banyuwangi Bus</h1>
                                     <p data-animation="fadeInLeft" data-delay="0.4s">Kami adalah perusahaan yang melayani berbagai informasi bus di wilayah banyuwangi. Mulai dari tarif rute dan jadwal pemberangkatan bus</p>
-                                    <a href="#" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.7s">Layanan Whatsapp</a>
+                                    <a href="#" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.7s">
+                                    <i class="fa fa-whatsapp"></i>    
+                                    Layanan Whatsapp</a>
                                 </div>
                             </div>
                         </div>
@@ -105,38 +111,49 @@
             </div>
         </section>
         <!-- ? services-area -->
-        <div class="services-area">
+        
+        <!-- Courses area start -->
+        <div class="courses-area section-padding40 fix" id="tracking">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-lg-12 mb-5 mt-5">
+                        <div class="section-tittle text-center mb-55">
+                            <h2>Our featured Banyuwangi Bus</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-5">
+                    <div class="services-area">
             <div class="container">
                 <div class="row justify-content-sm-center">
-                    <div class="col-lg-4 col-md-6 col-sm-8">
-                        <div class="single-services mb-30">
+                    <div class="col-lg-4 col-md-6 col-sm-8 py-5">
+                        <div class="single-services mb-30 py-5">
                             <div class="features-icon">
-                                <img src="{{asset('public/landingpage/assets/img/icon/icon1.svg')}}" alt="">
+                                <i class="fa fa-whatsapp text-success" aria-hidden="true"></i>
                             </div>
                             <div class="features-caption">
-                                <h3>60+ UX courses</h3>
+                                <h3>Chat Bot</h3>
                                 <p>The automated process all your website tasks.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="col-lg-4 col-md-6 col-sm-8 py-5">
                         <div class="single-services mb-30">
                             <div class="features-icon">
-                                <img src="{{asset('public/landingpage/assets/img/icon/icon2.svg')}}" alt="">
+                                <i class="fa fa-bus text-primary" aria-hidden="true"></i>
                             </div>
                             <div class="features-caption">
-                                <h3>Expert instructors</h3>
+                                <h3>Informasi Bus</h3>
                                 <p>The automated process all your website tasks.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="col-lg-4 col-md-6 col-sm-8 py-5">
                         <div class="single-services mb-30">
                             <div class="features-icon">
-                                <img src="{{asset('public/landingpage/assets/img/icon/icon3.svg')}}" alt="">
+                                <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
                             </div>
                             <div class="features-caption">
-                                <h3>Life time access</h3>
+                                <h3>Informasi Jadwal</h3>
                                 <p>The automated process all your website tasks.</p>
                             </div>
                         </div>
@@ -144,14 +161,6 @@
                 </div>
             </div>
         </div>
-        <!-- Courses area start -->
-        <div class="courses-area section-padding40 fix" id="tracking">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-7 col-lg-8">
-                        <div class="section-tittle text-center mb-55">
-                            <h2>Our featured courses</h2>
-                        </div>
                     </div>
                 </div>
                 
@@ -161,8 +170,8 @@
 
  
         <!--? About Area-3 Start -->
-        <section class="about-area3 fix" id="about">
-            <div class="support-wrapper align-items-center">
+        <section class="about-area3 fix py-5" id="about">
+            <div class="support-wrapper align-items-center py-5">
                 <div class="right-content3">
                     <!-- img -->
                     <div class="right-img">
