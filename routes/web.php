@@ -17,7 +17,6 @@ Auth::routes(['login'=>false,'register'=>false]);
 
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
-Route::post('/wabot', [App\Http\Controllers\apiWaController::class, 'bot']);
 
 // User
 Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);
