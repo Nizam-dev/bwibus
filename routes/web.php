@@ -17,6 +17,7 @@ Auth::routes(['login'=>false,'register'=>false]);
 
 Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+Route::post('/wabot', [App\Http\Controllers\apiWaController::class, 'bot']);
 
 // User
 Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);
@@ -37,6 +38,7 @@ Route::post('/jadwalbus/{id}', [App\Http\Controllers\JadwalBusController::class,
 Route::post('/jadwalbus/hapus/{id}', [App\Http\Controllers\JadwalBusController::class, 'hapus']);
 
 // Lokasi
+Route::get('/lokasibus/', [App\Http\Controllers\LokasiBusController::class, 'getlokasiall']);
 Route::get('/lokasibus/{id}', [App\Http\Controllers\LokasiBusController::class, 'getlokasi']);
 Route::post('/lokasibus/{id}', [App\Http\Controllers\LokasiBusController::class, 'updatelokasi']);
 

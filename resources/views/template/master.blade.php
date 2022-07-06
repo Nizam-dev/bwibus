@@ -16,6 +16,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
 
     @include('template.css')
+    @yield('css')
 </head>
 
 <body>

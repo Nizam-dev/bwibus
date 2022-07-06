@@ -100,7 +100,7 @@
                                 <div class="hero__caption">
                                     <h1 data-animation="fadeInLeft" data-delay="0.2s">Selamat Datang Di Banyuwangi Bus</h1>
                                     <p data-animation="fadeInLeft" data-delay="0.4s">Kami adalah perusahaan yang melayani berbagai informasi bus di wilayah banyuwangi. Mulai dari tarif rute dan jadwal pemberangkatan bus</p>
-                                    <a href="#" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.7s">
+                                    <a href="https://api.whatsapp.com/send?phone=6285335853671&text=Halo%20Admin" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.7s">
                                     <i class="fa fa-whatsapp"></i>    
                                     Layanan Whatsapp</a>
                                 </div>
