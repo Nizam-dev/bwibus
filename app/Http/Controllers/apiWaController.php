@@ -70,7 +70,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n";
         $buses = bus::all();
         $no = 1;
         foreach($buses as $bus){
-            $pesan .= $p.$no.". ".$bus->pt_po." - ".$bus->jalur."\n";
+            $pesan .= "\t[".$p.$no."]. ".$bus->pt_po." - ".$bus->jalur."\n";
             $no++;
         }
         $pesan .= "0. Untuk Kembali Ke Menu Utama\n";
