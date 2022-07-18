@@ -23,7 +23,7 @@ Silahkan pilih Menu : \n
         if($message != "start"){
             $s_message = substr($message,0,2);
             $s_message = strtoupper($s_message);
-            $kode = substr($message,2,7);
+            $kode = substr($message,3,7);
         }
 
 
