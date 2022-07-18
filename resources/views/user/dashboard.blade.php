@@ -32,7 +32,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css
 
 @section('content')
 
-<a href="https://wa.me/6285335853672?text=start" class="floating" target="_blank">
+<a href="https://wa.me/6285335853671?text=start" class="floating" target="_blank">
 <i class="fab fa-whatsapp fab-icon"></i>
 </a>
 
