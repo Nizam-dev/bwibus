@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\bus;
+use App\Models\jadwal_bus;
 class apiWaController extends Controller
 {
     public function bot(Request $request)
@@ -23,7 +24,7 @@ Silahkan pilih Menu : \n
         if($message != "start"){
             $s_message = substr($message,0,2);
             $s_message = strtoupper($s_message);
-            $kode = substr($message,3,7);
+            $kode = substr($message,2,7);
         }
 
 
@@ -51,7 +52,7 @@ Silahkan pilih Menu : \n
                 break;
         }
 
-        return ["status"=>"sukses"];
+        return ["status"=>"sukses","message"=>$s_message,"kode"=>$kode];
 
     }
 
@@ -81,9 +82,13 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n";
     public function jadwal_bus($id)
     {
         $bus = bus::find($id);
-        $jadwal = jadwal_bus::where('bus_id',$id)->first();
-        $pesan = "Jadwal Bus ".$bus->pt_po.'\nJalur '.$bus->jalur.'\n';
-        $pesan .= $jadwal->deskripsi_jadwal;
+        if($bus != null){
+            $jadwal = jadwal_bus::where('bus_id',$id)->first();
+            $pesan = "Jadwal Bus ".$bus->pt_po.'\nJalur '.$bus->jalur.'\n';
+            $pesan .= $jadwal->deskripsi_jadwal;
+        }else{
+            $pesan = "Jadwal Tidak Ditemukan\n";
+        }
         $pesan .= "0. Untuk Kembali Ke Menu Utama\n";
         return $pesan;
     }
