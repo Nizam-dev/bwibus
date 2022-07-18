@@ -273,7 +273,7 @@
   </footer> 
   <!-- Scroll Up -->
   <div id="back-top" >
-    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+    <i class="fa fa-level-up" aria-hidden="true"></i>
 </div>
 
 <!-- JS here -->
