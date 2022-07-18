@@ -25,3 +25,10 @@
     <div data-i18n="Analytics">Jadwal Bus</div>
     </a>
 </li>
+
+<li class="menu-item {{ (request()->is('tarifbus')) ? 'active' : '' }}"">
+            <a href=" {{url('tarifbus')}}" class="menu-link">
+    <i class='menu-icon tf-icons bx bx-bus'></i>
+    <div data-i18n="Analytics">Tarif Bus</div>
+    </a>
+</li>

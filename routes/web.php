@@ -41,4 +41,8 @@ Route::get('/lokasibus/', [App\Http\Controllers\LokasiBusController::class, 'get
 Route::get('/lokasibus/{id}', [App\Http\Controllers\LokasiBusController::class, 'getlokasi']);
 Route::post('/lokasibus/{id}', [App\Http\Controllers\LokasiBusController::class, 'updatelokasi']);
 
+// Profil
+Route::resource('/profile', App\Http\Controllers\ProfileController::class);
+
+
 

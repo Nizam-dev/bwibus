@@ -6,7 +6,9 @@
 
 <div class="card">
     <div class="card-header">
+        @if(auth()->user()->role == "admin")
         <button class="btn btn-primary float-end" id="tambahbusbutton">Tambah</button>
+        @endif
         <div class="modal fade show" id="tambahbusmodal" tabindex="-1" aria-modal="true" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -84,7 +86,9 @@
                     <th>Masa Berlaku Trayek</th>
                     <th>Kernet</th>
                     <th>Jalur</th>
+                    @if(auth()->user()->role == "admin")
                     <th>Option</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -98,11 +102,13 @@
                     <td>{{$bus->masa_berlaku_trayek}}</td>
                     <td>{{$bus->name}}</td>
                     <td>{{$bus->jalur}}</td>
+                    @if(auth()->user()->role == "admin")
                     <td>
                         <span class="btn btn-warning" onclick="edit({{$bus}})"><i class='bx bxs-edit-alt'></i></span>
 
                         <span class="btn btn-danger" onclick="hapus({{$bus->id}})"><i class='bx bxs-trash'></i></span>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWaHistoriesTable extends Migration
+class CreateTarifBusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateWaHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('wa_histories', function (Blueprint $table) {
+        Schema::create('tarif_buses', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-            $table->string('last_chat');
+            $table->foreignId('bus_id')->constrained();
+            $table->text('deskripsi_harga');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateWaHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wa_histories');
+        Schema::dropIfExists('tarif_buses');
     }
 }

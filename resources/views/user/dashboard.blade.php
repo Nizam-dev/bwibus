@@ -1,29 +1,55 @@
 @extends('template.master')
 
 @section('css')
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 <style>
     .card .col-auto i{
         font-size : 30px;
     }
+
+/* Add WA floating button CSS */
+.floating {
+ position: fixed;
+ width: 60px;
+ height: 60px;
+ bottom: 40px;
+ right: 40px;
+ background-color: #25d366;
+ color: #fff;
+ border-radius: 50px;
+ text-align: center;
+ font-size: 30px;
+ box-shadow: 2px 2px 3px #999;
+ z-index: 100;
+}
+
+.fab-icon {
+ margin-top: 16px;
+}
 </style>
 @endsection
 
 @section('content')
 
+<a href="https://wa.me/6281228430523?text=Hi%20Qiscus" class="floating" target="_blank">
+<i class="fab fa-whatsapp fab-icon"></i>
+</a>
+
 <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-md-6 mb-4">
-                            <div class="card border-start border-primary bg-warning  text-white shadow h-100">
+                            <div class="card border-start border-primary shadow h-100">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold  text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total BUS</div>
-                                            <div class="h5 mb-0 font-weight-bold text-white">{{$data["bus"]}}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$data["bus"]}}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="tf-icons  bx bx-bus "></i>
+                                            <i class="tf-icons  bx bx-bus text-primary"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -32,16 +58,16 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-md-6 mb-4">
-                            <div class="card border-start border-primary bg-success text-white shadow h-100">
+                            <div class="card border-start border-primary shadow h-100">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total Kernet</div>
-                                            <div class="h5 mb-0 font-weight-bold text-white">{{$data["kernet"]}}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$data["kernet"]}}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="tf-icons  bx bx-user "></i>
+                                            <i class="tf-icons  bx bx-user text-success"></i>
                                         </div>
                                     </div>
                                 </div>

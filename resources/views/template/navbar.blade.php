@@ -19,7 +19,7 @@
             <li class="nav-item lh-1 me-3">
                 <span>
                     <div class="widget widget-lg">
-                        Admin
+                        {{auth()->user()->name}}
                     </div>
                 </span>
             </li>
@@ -52,7 +52,7 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{url('profile')}}">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">My Profile</span>
                         </a>

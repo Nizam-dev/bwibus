@@ -16,9 +16,14 @@ class BusController extends Controller
         ->select("buses.*","users.name","users.id as kernet")
         ->get();
         $kernets =  User::where("role","kernet")->get();
+
+        // Kernet
         if(auth()->user()->role == "kernet"){
             $buses = $buses->where("kernet",auth()->user()->id);
+            return view('kernet.bus',compact("buses"));
         }
+
+        // Admin
         return view('admin.bus',compact("buses","kernets"));
     }
 

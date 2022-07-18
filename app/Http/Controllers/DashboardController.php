@@ -20,6 +20,12 @@ class DashboardController extends Controller
         elseif(auth()->user()->role == 'kernet'){
             $bus = bus::where('user_id',auth()->user()->id)->first();
             return view('kernet.dashboard',compact('bus'));
+        }else{
+            $data = [
+                "bus"=>bus::count(),
+                "kernet"=>User::where('role','kernet')->count()
+            ];
+            return view('user.dashboard',compact("data"));
         }
     }
 }

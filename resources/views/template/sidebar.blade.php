@@ -20,6 +20,8 @@
             @include('template.role.admin')
         @elseif(auth()->user()->role == "kernet")
             @include('template.role.kernet')
+        @else
+            @include('template.role.user')
         @endif
 
     </ul>

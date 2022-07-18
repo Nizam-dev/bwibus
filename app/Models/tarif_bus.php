@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class wa_history extends Model
+class tarif_bus extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'number',
-        'last_chat',
+        'bus_id',
+        'deskripsi_tarif',
     ];
 }
