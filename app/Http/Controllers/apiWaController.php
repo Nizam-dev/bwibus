@@ -84,7 +84,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n";
         $bus = bus::find($id);
         if($bus != null){
             $jadwal = jadwal_bus::where('bus_id',$id)->first();
-            $pesan = "Jadwal Bus ".$bus->pt_po.'\nJalur '.$bus->jalur.'\n';
+            $pesan = "Jadwal Bus ".$bus->pt_po."\nJalur ".$bus->jalur."\n";
             $pesan .= $jadwal->deskripsi_jadwal;
         }else{
             $pesan = "Jadwal Tidak Ditemukan\n";
