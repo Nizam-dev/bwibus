@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/wabot', [App\Http\Controllers\apiWaController::class, 'bot']);
+
