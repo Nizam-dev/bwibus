@@ -12,6 +12,11 @@ Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
 Route::get('/register', [App\Http\Controllers\RegisterController::class, 'index']);
 Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register']);
 
+Route::get('/tracking/{id}', [App\Http\Controllers\TrackingController::class, 'tracking']);
+
+
+
+
 Auth::routes(['login'=>false,'register'=>false]);
 
 

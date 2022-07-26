@@ -126,7 +126,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
             if($lokasi != null){
                 $pesan = "(Lokasi Bus ".$bus->pt_po.")\n\n";
                 $pesan .= $this->getAddress($lokasi->latitude,$lokasi->longitude);
-                $pesan .= "\n\n".url("bus/".$id);
+                $pesan .= "\n\n".url("tracking/".$id);
             }else{
                 $pesan = "Lokasi Bus Belum Ada\n";
             }
