@@ -10,6 +10,6 @@ class tarif_bus extends Model
     use HasFactory;
     protected $fillable = [
         'bus_id',
-        'deskripsi_tarif',
+        'deskripsi_harga',
     ];
 }

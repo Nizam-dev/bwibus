@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\bus;
 use App\Models\jadwal_bus;
 use App\Models\lokasi_bus;
+use App\Models\tarif_bus;
 use Exception;
 
 class apiwa2Controller extends Controller
@@ -45,13 +46,16 @@ Silahkan pilih Menu : \n
                 $this->sendMessege($phone,$this->daftar_bus("BT"));
                 break;
             case '3':
-                $this->sendMessege($phone,$this->daftar_bus("BH"));
+                $this->sendMessege($phone,$this->daftar_bus("BR"));
                 break;
             case'BJ':
                 $this->sendMessege($phone,$this->jadwal_bus($kode));
                 break;
             case'BT':
                 $this->sendMessege($phone,$this->lokasi_bus($kode));
+                break;
+            case'BT':
+                $this->sendMessege($phone,$this->tarif_bus($kode));
                 break;
             default:
                 $status = "failed";
@@ -99,6 +103,21 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
         return $pesan;
     }
 
+    public function tarif_bus($id)
+    {
+        $bus = bus::find($id);
+        if($bus != null){
+            $tarif = tarif_bus::where('bus_id',$id)->first();
+            $pesan = "(Tarif Bus ".$bus->pt_po.")\n\n";
+            $pesan .= $tarif->deskripsi_harga."\n";
+        }else{
+            $pesan = "Tarif Tidak Ditemukan\n";
+        }
+        $pesan .= "\n\n0. Untuk Kembali Ke Menu Utama\n";
+        return $pesan;
+    }
+
+
     public function lokasi_bus($id)
     {
         $bus = bus::find($id);
@@ -107,7 +126,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
             if($lokasi != null){
                 $pesan = "(Lokasi Bus ".$bus->pt_po.")\n\n";
                 $pesan .= $this->getAddress($lokasi->latitude,$lokasi->longitude);
-                $pesan .= "\n\n".url("bus/").$id;
+                $pesan .= "\n\n".url("bus/".$id);
             }else{
                 $pesan = "Lokasi Bus Belum Ada\n";
             }

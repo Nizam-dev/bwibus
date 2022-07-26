@@ -36,6 +36,13 @@ Route::post('/jadwalbus', [App\Http\Controllers\JadwalBusController::class, 'tam
 Route::post('/jadwalbus/{id}', [App\Http\Controllers\JadwalBusController::class, 'edit']);
 Route::post('/jadwalbus/hapus/{id}', [App\Http\Controllers\JadwalBusController::class, 'hapus']);
 
+// Jadwal Bus
+Route::get('/tarifbus', [App\Http\Controllers\HargaBusController::class, 'index']);
+Route::post('/tarifbus', [App\Http\Controllers\HargaBusController::class, 'tambah']);
+Route::post('/tarifbus/{id}', [App\Http\Controllers\HargaBusController::class, 'edit']);
+Route::post('/tarifbus/hapus/{id}', [App\Http\Controllers\HargaBusController::class, 'hapus']);
+
+
 // Lokasi
 Route::get('/lokasibus/', [App\Http\Controllers\LokasiBusController::class, 'getlokasiall']);
 Route::get('/lokasibus/{id}', [App\Http\Controllers\LokasiBusController::class, 'getlokasi']);
