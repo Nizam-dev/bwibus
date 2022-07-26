@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\bus;
 use App\Models\jadwal_bus;
 use App\Models\lokasi_bus;
-class apiWaController extends Controller
+use Exception;
+
+class apiwa2Controller extends Controller
 {
     public function bot(Request $request)
     {
@@ -17,8 +19,8 @@ Silahkan pilih Menu : \n
 3.Daftar Harga Bus\n
 ";
 
-        $phone = $request->phone;
-        $message = $request->message;
+        $phone = $request->payload['sender'];
+        $message = $request->payload['text'];
         $kode = '';
         $s_message=$message;
 
@@ -124,28 +126,66 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n";
 
     public function sendMessege($phone,$message)
     {
-        $token = "mGRiINOux5Ju5M4YkwnRg1MKmOYsTflwXq5CHoT5OXLe5Khymht1yw2Pw3ZB0GPn";
-        // $phone="6283853958171";
-        // $message="";
-
-        $curl = curl_init();
-        $data = [
-        'phone' => $phone,
-        'message' => $message,
-        ];
-        curl_setopt($curl, CURLOPT_HTTPHEADER,
-            array(
-                "Authorization: $token",
-            )
-        );
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($curl, CURLOPT_URL,  "https://kudus.wablas.com/api/send-message");
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        $result = curl_exec($curl);
-        curl_close($curl);
-
+       // Lihat apiKirimWaRequest() pada Contoh Integrasi diatas
+        try {
+            $reqParams = [
+            'token' => 'SlEL/A0TmxsOfq7+WIqHPjbEZWC77gIWuI8L1ZDZX/y76KZgz02lqkDFt0Ei65m0-nizam',
+            'url' => 'https://api.kirimwa.id/v1/messages',
+            'method' => 'POST',
+            'payload' => json_encode([
+                'message' => $message,
+                'phone_number' => $phone,
+                'message_type' => 'text',
+                'device_id' => "xiaomi-redmi-nizam"
+            ])
+            ];
+        
+            $response = $this->apiKirimWaRequest($reqParams);
+            echo $response['body'];
+        } catch (Exception $e) {
+            print_r($e);
+        }
     }
+
+
+    function apiKirimWaRequest(array $params) {
+        $httpStreamOptions = [
+          'method' => $params['method'] ?? 'GET',
+          'header' => [
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . ($params['token'] ?? '')
+          ],
+          'timeout' => 15,
+          'ignore_errors' => true
+        ];
+      
+        if ($httpStreamOptions['method'] === 'POST') {
+          $httpStreamOptions['header'][] = sprintf('Content-Length: %d', strlen($params['payload'] ?? ''));
+          $httpStreamOptions['content'] = $params['payload'];
+        }
+      
+        // Join the headers using CRLF
+        $httpStreamOptions['header'] = implode("\r\n", $httpStreamOptions['header']) . "\r\n";
+      
+        $stream = stream_context_create(['http' => $httpStreamOptions]);
+        $response = file_get_contents($params['url'], false, $stream);
+      
+        // Headers response are created magically and injected into
+        // variable named $http_response_header
+        $httpStatus = $http_response_header[0];
+      
+        preg_match('#HTTP/[\d\.]+\s(\d{3})#i', $httpStatus, $matches);
+      
+        if (! isset($matches[1])) {
+          throw new Exception('Can not fetch HTTP response header.');
+        }
+      
+        $statusCode = (int)$matches[1];
+        if ($statusCode >= 200 && $statusCode < 300) {
+          return ['body' => $response, 'statusCode' => $statusCode, 'headers' => $http_response_header];
+        }
+      
+        throw new Exception($response, $statusCode);
+      }
+      
 }
