@@ -54,7 +54,7 @@ Silahkan pilih Menu : \n
             case'BT':
                 $this->sendMessege($phone,$this->lokasi_bus($kode));
                 break;
-            case'BT':
+            case'BR':
                 $this->sendMessege($phone,$this->tarif_bus($kode));
                 break;
             default:
