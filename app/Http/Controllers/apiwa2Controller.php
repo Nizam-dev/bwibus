@@ -50,6 +50,9 @@ Silahkan pilih Menu : \n
             case'BJ':
                 $this->sendMessege($phone,$this->jadwal_bus($kode));
                 break;
+            case'BT':
+                $this->lokasi_bus($phone,$this->jadwal_bus($kode));
+                break;
             default:
                 $status = "failed";
                 break;
@@ -74,7 +77,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n";
         $buses = bus::all();
         $no = 1;
         foreach($buses as $bus){
-            $pesan .= "\t[".$p.$no."]. ".$bus->pt_po." - ".$bus->jalur."\n";
+            $pesan .= "[".$p.$no."]. (".$bus->pt_po." - ".$bus->jalur.")\n\n";
             $no++;
         }
         $pesan .= "0. Untuk Kembali Ke Menu Utama\n";
@@ -87,8 +90,8 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n";
         $bus = bus::find($id);
         if($bus != null){
             $jadwal = jadwal_bus::where('bus_id',$id)->first();
-            $pesan = "Jadwal Bus ".$bus->pt_po."\nJalur ".$bus->jalur."\n";
-            $pesan .= $jadwal->deskripsi_jadwal;
+            $pesan = "(Jadwal Bus ".$bus->pt_po.")\n\n";
+            $pesan .= "- ".$jadwal->deskripsi_jadwal."\n";
         }else{
             $pesan = "Jadwal Tidak Ditemukan\n";
         }
@@ -101,7 +104,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n";
         if($bus != null){
             $lokasi = lokasi_bus::where('bus_id',$id)->first();
             if($lokasi != null){
-                $pesan = "lokasi Bus ".$bus->pt_po."\n";
+                $pesan = "(lokasi Bus ".$bus->pt_po.")\n";
                 $pesan .= $this->getAddress($lokasi->latitude,$lokasi->longitude);
             }else{
                 $pesan = "Lokasi Bus Belum Ada\n";
