@@ -51,7 +51,7 @@ Silahkan pilih Menu : \n
                 $this->sendMessege($phone,$this->jadwal_bus($kode));
                 break;
             case'BT':
-                $this->lokasi_bus($phone,$this->jadwal_bus($kode));
+                $this->sendMessege($phone,$this->lokasi_bus($kode));
                 break;
             default:
                 $status = "failed";
@@ -66,13 +66,13 @@ Silahkan pilih Menu : \n
     {
         if($p == "BJ"){
             $pesan = "Daftar Jadwal Bus :\n
-Masukkan Kode Berikut untuk melihat jadwal Bus :\n";
+Masukkan Kode Berikut untuk melihat jadwal Bus :\n\n";
         }elseif($p == "BT"){
             $pesan = "Daftar Tracking Bus :\n
-Masukkan Kode Berikut untuk Tracking Bus :\n";
+Masukkan Kode Berikut untuk Tracking Bus :\n\n";
         }else{
             $pesan = "Daftar Jadwal Bus :\n
-Masukkan Kode Berikut untuk melihat Harga Bus :\n";
+Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
         }
         $buses = bus::all();
         $no = 1;
