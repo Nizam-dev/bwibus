@@ -91,10 +91,11 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
         if($bus != null){
             $jadwal = jadwal_bus::where('bus_id',$id)->first();
             $pesan = "(Jadwal Bus ".$bus->pt_po.")\n\n";
-            $pesan .= "- ".$jadwal->deskripsi_jadwal."\n";
+            $pesan .= $jadwal->deskripsi_jadwal."\n";
         }else{
             $pesan = "Jadwal Tidak Ditemukan\n";
         }
+        $pesan .= "\n\n0. Untuk Kembali Ke Menu Utama\n";
         return $pesan;
     }
 
@@ -104,14 +105,16 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
         if($bus != null){
             $lokasi = lokasi_bus::where('bus_id',$id)->first();
             if($lokasi != null){
-                $pesan = "(lokasi Bus ".$bus->pt_po.")\n";
+                $pesan = "(Lokasi Bus ".$bus->pt_po.")\n\n";
                 $pesan .= $this->getAddress($lokasi->latitude,$lokasi->longitude);
+                $pesan .= "\n\n".url("bus/").$id;
             }else{
                 $pesan = "Lokasi Bus Belum Ada\n";
             }
         }else{
             $pesan = "Lokasi Bus Belum Ada\n";
         }
+        $pesan .= "\n\n0. Untuk Kembali Ke Menu Utama\n";
         return $pesan;
     }
 
