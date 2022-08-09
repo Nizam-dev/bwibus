@@ -13,7 +13,7 @@ class apiwa2Controller extends Controller
 {
     public function bot(Request $request)
     {
-        $pesan = "Halo Selamat Datang di Banyuwangi Bus:\n
+        $pesan = "*Halo Selamat Datang di Banyuwangi Bus*:\n
 Silahkan pilih Menu : \n
 1.Lihat Jadwal Bus\n
 2.Tracking Lokasi Bus\n
@@ -81,7 +81,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
         $buses = bus::all();
         $no = 1;
         foreach($buses as $bus){
-            $pesan .= "[".$p.$no."]. (".$bus->pt_po." - ".$bus->jalur.")\n\n";
+            $pesan .= "*[".$p.$no."]. ".$bus->pt_po."* _( ".$bus->jalur.")_\n\n";
             $no++;
         }
         $pesan .= "0. Untuk Kembali Ke Menu Utama\n";
@@ -94,7 +94,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
         $bus = bus::find($id);
         if($bus != null){
             $jadwal = jadwal_bus::where('bus_id',$id)->first();
-            $pesan = "(Jadwal Bus ".$bus->pt_po.")\n\n";
+            $pesan = "*Jadwal Bus ".$bus->pt_po."*\n\n";
             $pesan .= $jadwal->deskripsi_jadwal."\n";
         }else{
             $pesan = "Jadwal Tidak Ditemukan\n";
@@ -108,7 +108,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
         $bus = bus::find($id);
         if($bus != null){
             $tarif = tarif_bus::where('bus_id',$id)->first();
-            $pesan = "(Tarif Bus ".$bus->pt_po.")\n\n";
+            $pesan = "*Tarif Bus ".$bus->pt_po."*\n\n";
             $pesan .= $tarif->deskripsi_harga."\n";
         }else{
             $pesan = "Tarif Tidak Ditemukan\n";
@@ -124,7 +124,7 @@ Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
         if($bus != null){
             $lokasi = lokasi_bus::where('bus_id',$id)->first();
             if($lokasi != null){
-                $pesan = "(Lokasi Bus ".$bus->pt_po.")\n\n";
+                $pesan = "*Lokasi Bus ".$bus->pt_po."*\n\n";
                 $pesan .= $this->getAddress($lokasi->latitude,$lokasi->longitude);
                 $pesan .= "\n\n".url("tracking/".$id);
             }else{

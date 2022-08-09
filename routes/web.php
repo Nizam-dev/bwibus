@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('landingpage');
 });
 
-Route::get('/login', [App\Http\Controllers\LoginController::class, 'index']);
+Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
 Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
 
 Route::get('/register', [App\Http\Controllers\RegisterController::class, 'index']);
@@ -14,6 +14,8 @@ Route::post('/register', [App\Http\Controllers\RegisterController::class, 'regis
 
 Route::get('/tracking/{id}', [App\Http\Controllers\TrackingController::class, 'tracking']);
 
+
+Route::post('kritiksaran', [App\Http\Controllers\KritikSaranController::class, 'kritik_saran']);
 
 
 

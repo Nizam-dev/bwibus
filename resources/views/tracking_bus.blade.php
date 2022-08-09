@@ -37,6 +37,9 @@
         .features-icon i {
             font-size: 7rem;
         }
+        .theme-colors, .header-sticky.sticky-bar{
+            background : linear-gradient(to bottom, #006ae8 0%, #5274ff 100%) !important;
+        }
     </style>
 </head>
 

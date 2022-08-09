@@ -37,6 +37,9 @@
         .features-icon i {
             font-size: 7rem;
         }
+        .theme-colors, .header-sticky.sticky-bar{
+            background : linear-gradient(to bottom, #006ae8 0%, #5274ff 100%) !important;
+        }
     </style>
 </head>
 
@@ -63,7 +66,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html"><img
+                                    <a href="{{url('')}}"><img
                                             src="{{asset('public/landingpage/assets/img/logo/logo.png')}}" alt=""
                                             style="height:50px;"><b class="text-white">BWIBUS</b></a>
                                 </div>
@@ -78,6 +81,7 @@
                                                 <li><a href="#track">Tracking</a></li>
                                                 <li><a href="#tracking">Layanan</a></li>
                                                 <li><a href="#about">About</a></li>
+                                                <li><a href="#kritiksaran">Kritik dan Saran</a></li>
                                                 <li class="button-header"><a href="{{url('login')}}"
                                                         class="btn btn3">Log in</a></li>
                                             </ul>
@@ -111,7 +115,7 @@
                                     <p data-animation="fadeInLeft" data-delay="0.4s">Kami adalah perusahaan yang
                                         melayani berbagai informasi bus di wilayah banyuwangi. Mulai dari tarif rute dan
                                         jadwal pemberangkatan bus</p>
-                                    <a href="https://api.whatsapp.com/send?phone=6285335853671&text=start"
+                                    <a href="{{url('dashboard')}}"
                                         class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.7s">
                                         <i class="fa fa-whatsapp"></i>
                                         Layanan Whatsapp</a>
@@ -171,7 +175,7 @@
                                             </div>
                                             <div class="features-caption">
                                                 <h3>Chat Bot</h3>
-                                                <p>The automated process all your website tasks.</p>
+                                                <p>Chatbot whatsapp untuk melihat informasi seputar Bus Banyuwangi.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +186,7 @@
                                             </div>
                                             <div class="features-caption">
                                                 <h3>Informasi Bus</h3>
-                                                <p>The automated process all your website tasks.</p>
+                                                <p>Informasi Bus di Banyuwangi.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +197,7 @@
                                             </div>
                                             <div class="features-caption">
                                                 <h3>Informasi Jadwal</h3>
-                                                <p>The automated process all your website tasks.</p>
+                                                <p>Informasi Jadwal Bus di Banywuangi.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -251,6 +255,59 @@
                 </div>
             </div>
         </section>
+
+
+         <!-- Courses area start -->
+         <div class="courses-area section-padding40 fix" id="kritiksaran">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-lg-12 mb-5 mt-5">
+                        <div class="section-tittle text-center mb-55">
+                            <h2>Masukan Kritik dan Saran</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-5">
+                        <div class="services-area">
+                            <div class="container">
+                                <div class="card">
+
+                                    <div class="card-body bg-primary py-5 px-5">
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4 class="text-white">Kirim Kritik dan Saran</h4>
+                                                <form action="{{url('kritiksaran')}}" method="post">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <textarea name="kritiksaran" required class="form-control" style="font-size:14px;"></textarea>
+                                                    </div>
+
+
+                                                    <button 
+                                                        class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.7s">
+                                                        <i class="fa fa-paper-plane"></i>
+                                                        Kirim</button>
+
+                                                </form>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <img style="width:150px;" class="mx-auto d-block" src="{{asset('public/image/kritiksaran.png')}}" alt="" srcset="">
+                                            </div>
+                                        </div>
+
+                                    </div>                           
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Courses area End -->
+        
 
     </main>
     <footer>
@@ -361,6 +418,7 @@
     <script src="{{asset('public/landingpage/assets/js/jquery.validate.min.js')}}"></script>
     <script src="{{asset('public/landingpage/assets/js/mail-script.js')}}"></script>
     <script src="{{asset('public/landingpage/assets/js/jquery.ajaxchimp.min.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Jquery Plugins, main Jquery -->
     <script src="{{asset('public/landingpage/assets/js/plugins.js')}}"></script>
@@ -375,6 +433,19 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv-h2II7DbFQkpL9pDxNRq3GWXqS5Epts&callback=initialize"
         type="text/javascript"></script>
     <script type="text/javascript">
+
+
+        @if(session()->has('sukses'))
+        Swal.fire({
+            title: 'Berhasil Mengirim Kritik dan Saran',
+            text: '{{session()->get("sukses")}}',
+            icon: 'success',
+            confirmButtonText: 'ok'
+            })
+
+        @endif
+
+
         var trayek = [];
 
         function initialize() {
@@ -410,6 +481,9 @@
 
 
         }
+
+
+        
     </script>
 
 
