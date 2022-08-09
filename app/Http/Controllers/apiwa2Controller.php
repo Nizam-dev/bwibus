@@ -69,13 +69,13 @@ Silahkan pilih Menu : \n
     public function daftar_bus($p)
     {
         if($p == "BJ"){
-            $pesan = "Daftar Jadwal Bus :\n
+            $pesan = "*Daftar Jadwal Bus :*\n
 Masukkan Kode Berikut untuk melihat jadwal Bus :\n\n";
         }elseif($p == "BT"){
-            $pesan = "Daftar Tracking Bus :\n
-Masukkan Kode Berikut untuk Tracking Bus :\n\n";
+            $pesan = "*Daftar Tracking Bus :*\n
+Masukkan Kode Berikut untuk Tracking Bus :*\n\n";
         }else{
-            $pesan = "Daftar Jadwal Bus :\n
+            $pesan = "*Daftar Jadwal Bus :\n
 Masukkan Kode Berikut untuk melihat Harga Bus :\n\n";
         }
         $buses = bus::all();
