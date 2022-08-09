@@ -40,6 +40,9 @@
         .theme-colors, .header-sticky.sticky-bar{
             background : linear-gradient(to bottom, #006ae8 0%, #5274ff 100%) !important;
         }
+        .slider-area, .slider-area2{
+            background-image : url("{{url('public/image/bg_bwibus.png')}}");
+        }
     </style>
 </head>
 
