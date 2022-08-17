@@ -19,7 +19,10 @@ class LoginController extends Controller
     {
         $request->validate([
             'email'=>'required',
-            'password'=>'required',
+            'password'=>'required|min:6',
+        ],[
+            'required'=>':attribute tidak boleh kosong',
+            'min'=>':attribute  kurang dari 6 karakter',
         ]);
         
         if(!User::where("email",$request->email)->first()){

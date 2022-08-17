@@ -15,6 +15,10 @@ class UserController extends Controller
 
     public function tambah(Request $request)
     {
+        if(strlen($request->password) < 6){
+            return redirect()->back()->with("gagal","password tidak boleh kurang dari 6 karakter");
+        }
+        
         $data = $request->all();
         $data["password"] = bcrypt($request->password);
         if(User::where("email",$request->email)->first()){
@@ -28,6 +32,9 @@ class UserController extends Controller
     {
         $data = $request->except(['password']);
         if($request->password != ""){
+            if(strlen($request->password) < 6){
+                return redirect()->back()->with("gagal","password tidak boleh kurang dari 6 karakter");
+            }
             $data["password"] = bcrypt($request->password);
         }
         User::find($id)->update($data);

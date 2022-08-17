@@ -16,6 +16,7 @@ Route::get('/tracking/{id}', [App\Http\Controllers\TrackingController::class, 't
 
 
 Route::post('kritiksaran', [App\Http\Controllers\KritikSaranController::class, 'kritik_saran']);
+Route::get('kritiksaran', [App\Http\Controllers\KritikSaranController::class, 'index']);
 
 
 

@@ -164,6 +164,17 @@
         return toastPlacement.show();
     }
 
+    @if(session()->has("errors"))
+
+        @foreach ($errors->all() as $error)
+            alertToast({
+                type: "bg-danger",
+                judul: "Gagal",
+                deskripsi: "{{$error}}",
+            })
+        @endforeach
+    @endif
+
     @if(session()->has("sukses"))
     alertToast({
         judul: "Sukses",

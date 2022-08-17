@@ -32,3 +32,10 @@
     <div data-i18n="Analytics">Tarif Bus</div>
     </a>
 </li>
+
+<li class="menu-item {{ (request()->is('kritiksaran')) ? 'active' : '' }}"">
+            <a href=" {{url('kritiksaran')}}" class="menu-link">
+    <i class='menu-icon tf-icons bx bx-mail-send'></i>
+    <div data-i18n="Analytics">Kritik dan Saran</div>
+    </a>
+</li>
