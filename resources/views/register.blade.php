@@ -89,6 +89,18 @@
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
+
+                            <div class="mb-3 form-password-toggle">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label" for="password">Confirm Password</label>
+                                </div>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" id="password_confirmation"
+                                        class="form-control @error('password') is-invalid @enderror" name="password_confirmation"
+                                        placeholder="*****" aria-describedby="password_confirmation" />
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                </div>
+                            </div>
                      
                             <div class="mb-3">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Daftar</button>
@@ -163,6 +175,17 @@
         }, 2000);
         return toastPlacement.show();
     }
+
+    @if(session()->has("errors"))
+
+    @foreach ($errors->all() as $error)
+        alertToast({
+            type: "bg-danger",
+            judul: "Gagal",
+            deskripsi: "{{$error}}",
+        })
+    @endforeach
+    @endif
 
     @if(session()->has("sukses"))
     alertToast({

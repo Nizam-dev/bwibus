@@ -19,8 +19,13 @@ class RegisterController extends Controller
         $request->validate([
             'name'=>'required',
             'email'=>'required',
-            'password'=>'required',
+            'password'=>'required|confirmed|min:6',
+        ],[
+            'required'=>':attribute tidak boleh kosong',
+            'min'=>':attribute  kurang dari 6 karakter',
+            'confirmed'=>'Konfirmasi password tidak sama',
         ]);
+        
         
         if(User::where("email",$request->email)->first()){
             return redirect()->back()->with("gagal","Email sudah terdaftar");
