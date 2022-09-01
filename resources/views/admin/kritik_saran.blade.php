@@ -14,6 +14,7 @@
                 <tr class="text-nowrap">
                     <th>#</th>
                     <th>Kritik dan Saran</th>
+                    <th>Nama User</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +23,7 @@
               <tr>
                   <td>{{$loop->iteration}}</td>
                   <td>{{$ks->kritiksaran}}</td>
+                  <td>{{$ks->name}}</td>
               </tr>
 
               @endforeach

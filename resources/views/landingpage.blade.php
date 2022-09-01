@@ -158,6 +158,59 @@
         </div>
         <!-- Courses area End -->
 
+         <!-- Courses area start -->
+         <div class="courses-area section-padding40 fix" id="track">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-12 col-lg-12 mb-5 mt-5">
+                        <div class="section-tittle text-center mb-55">
+                            <h2>Daftar Tarif Bus</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-5">
+                        <div class="services-area">
+                            <div class="container">
+                                <div class="card">
+                                    <div class="card-body">
+                                       
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table">
+                                            <thead>
+                                                <tr class="text-nowrap">
+                                                    <th>#</th>
+                                                    <th>PT/PO</th>
+                                                    <th>Plat Nomor</th>
+                                                    <th>Jurusan</th>
+                                                    <th>Deskripsi Tarif</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach($tarif_buses as $tarif_bus)
+                                                <tr>
+                                                    <th scope="row">{{$loop->iteration}}</th>
+                                                    <td>{{$tarif_bus->pt_po}}</td>
+                                                    <td>{{$tarif_bus->plat_nomor}}</td>
+                                                    <td>{{$tarif_bus->jalur}}</td>
+                                                    <td style="white-space: pre-line;">{{$tarif_bus->deskripsi_harga}}</td>
+                                                </tr>
+                                                @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Courses area End -->
+
         <!-- Courses area start -->
         <div class="courses-area section-padding40 fix" id="tracking">
             <div class="container">

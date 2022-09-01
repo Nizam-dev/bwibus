@@ -2,9 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('landingpage');
-});
+
+Route::get('/', [App\Http\Controllers\LandingPageController::class, 'index']);
 
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
 Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
@@ -17,6 +16,7 @@ Route::get('/tracking/{id}', [App\Http\Controllers\TrackingController::class, 't
 
 Route::post('kritiksaran', [App\Http\Controllers\KritikSaranController::class, 'kritik_saran']);
 Route::get('kritiksaran', [App\Http\Controllers\KritikSaranController::class, 'index']);
+Route::get('kritiksaranuser', [App\Http\Controllers\KritikSaranController::class, 'user_kritiksaran']);
 
 
 

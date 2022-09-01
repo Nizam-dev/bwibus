@@ -6,7 +6,10 @@
 
 <div class="card">
     <div class="card-header">
+        @if(auth()->user()->role != "penumpang")
         <button class="btn btn-primary float-end" id="tambahuserbutton">Tambah</button>
+        @endif  
+
         <div class="modal fade show" id="tambahusermodal" tabindex="-1" aria-modal="true" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -54,7 +57,9 @@
                     <th>Plat Nomor</th>
                     <th>Jurusan</th>
                     <th>Deskripsi Tarif</th>
+                    @if(auth()->user()->role != "penumpang")
                     <th>Option</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -66,11 +71,13 @@
                     <td>{{$tarif_bus->plat_nomor}}</td>
                     <td>{{$tarif_bus->jalur}}</td>
                     <td style="white-space: pre-line;">{{$tarif_bus->deskripsi_harga}}</td>
+                    @if(auth()->user()->role != "penumpang")
                     <td>
                         <span class="btn btn-warning" onclick="edit({{$tarif_bus}})"><i class='bx bxs-edit-alt'></i></span>
 
                         <span class="btn btn-danger" onclick="hapus({{$tarif_bus->id}})"><i class='bx bxs-trash'></i></span>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
 
